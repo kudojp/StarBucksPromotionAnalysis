@@ -1,6 +1,8 @@
 # Starbucks Promotion Analysis
 
-This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will combine transaction, demographic and offer data to determine which demographic groups respond best to which offer type. This data set is a simplified version of the real Starbucks app.
+This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will combine transaction, demographic and offer data to determine which demographic groups respond best to which offer type. (i.e., 75 percent of women customers who were 35 years old responded to offer A vs 40 percent from the same demographic to offer B, so send offer A).   
+  
+This data set is a simplified version of the real Starbucks app.
 
 
 ## Dataset overview
