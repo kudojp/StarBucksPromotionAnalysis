@@ -1,11 +1,11 @@
-,channels,difficulty,duration,id,offer_type,reward
-0,"['email', 'mobile', 'social']",10,7,bogo_7days$10,bogo,10
-1,"['web', 'email', 'mobile', 'social']",10,5,bogo_5days$10,bogo,10
-2,"['web', 'email', 'mobile']",0,4,info_4days,informational,0
-3,"['web', 'email', 'mobile']",5,7,bogo_7days$5,bogo,5
-4,"['web', 'email']",20,10,disc_10days$20-$5,discount,5
-5,"['web', 'email', 'mobile', 'social']",7,7,disc_7days$7-$3,discount,3
-6,"['web', 'email', 'mobile', 'social']",10,10,disc_10days$10-$2,discount,2
-7,"['email', 'mobile', 'social']",0,3,info_3days,informational,0
-8,"['web', 'email', 'mobile', 'social']",5,5,bogo_5days$5,bogo,5
-9,"['web', 'email', 'mobile']",10,7,disc_7days$10-$2,discount,2
+channels,difficulty,duration,id,offer_type,reward
+"['email', 'mobile', 'social']",10,7,bogo_7days$10,bogo,10
+"['web', 'email', 'mobile', 'social']",10,5,bogo_5days$10,bogo,10
+"['web', 'email', 'mobile']",0,4,info_4days,informational,0
+"['web', 'email', 'mobile']",5,7,bogo_7days$5,bogo,5
+"['web', 'email']",20,10,disc_10days$20-$5,discount,5
+"['web', 'email', 'mobile', 'social']",7,7,disc_7days$7-$3,discount,3
+"['web', 'email', 'mobile', 'social']",10,10,disc_10days$10-$2,discount,2
+"['email', 'mobile', 'social']",0,3,info_3days,informational,0
+"['web', 'email', 'mobile', 'social']",5,5,bogo_5days$5,bogo,5
+"['web', 'email', 'mobile']",10,7,disc_7days$10-$2,discount,2
