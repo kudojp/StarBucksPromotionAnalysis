@@ -1,41 +1,48 @@
 # Starbucks Promotion Analysis
 
-This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will combine transaction, demographic and offer data to determine which demographic groups respond best to which offer type. (i.e., 75 percent of women customers who were 35 years old responded to offer A vs 40 percent from the same demographic to offer B, so send offer A).   
-  
-This data set is a simplified version of the real Starbucks app.
+This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will create a predictive model to predict whether a customer would complete a coupon **when they first view it**. (It is tricky that even if a customer does not view and displat the coupon in the shop, the coupon can be automatically used once he spends the amount needed.)
+
+Data set used in this project is a simplified version of the real Starbucks app.
 
 
-## Dataset overview
+## 1. Data Overview
 
-The program used to create the data simulates how people make purchasing decisions and how those decisions are influenced by promotional offers.
-Each person in the simulation has some hidden traits that influence their purchasing patterns and are associated with their observable traits. People produce various events, including receiving offers, opening offers, and making purchases.
+This data records 17k customers' behaviors, including receiving offers, opening offers, and making purchases.
 As a simplification, there are no explicit products to track. Only the amounts of each transaction or offer are recorded.  
 
-There are three types of offers that can be sent: buy-one-get-one (BOGO), discount, and informational. In a BOGO offer, a user needs to spend a certain amount to get a reward equal to that threshold amount. In a discount, a user gains a reward equal to a fraction of the amount spent. In an informational offer, there is no reward, but neither is there a requisite amount that the user is expected to spend. Offers can be delivered via multiple channels.  
+There are 3 types of offers that can be sent. Offers can be delivered via multiple channels.
 
-The basic task is to use the data to identify which groups of people are most responsive to each type of offer, and how best to present each type of offer.
+```
+* buy-one-get-one (BOGO)
+ (a user needs to spend a certain amount at a time to get a reward equal to that threshold amount)
+* discount
+ (a user gains a reward equal to a fraction of the amount spent)
+* informational.
+ (there is no reward, but neither is there a requisite amount that the user is expected to spend.)
+```
 
-## Data Dictionary
 
-1.  profile.json
-Rewards program users (17000 users x 5 fields)  
+## 2. Dataset Detail
+
+1. portfolio.json : Coupons detail (10 types of coupons x 6 fields)
+```
+id (string) - offer id
+offer_type (string) - type of offer ie BOGO, discount, informational
+difficulty (int) - minimum required spend to complete an offer
+reward (int) - reward given for completing an offer
+duration (int) - time for offer to be open, in days
+channels (list of strings)
+```
+
+2. profile.json  :  Rewards program users (17000 users x 5 attributes)  
 ```
 gender: (categorical) M, F, O, or null   
 age: (numeric) missing value encoded as 118   
 id: (string/hash)   
 became_member_on: (date) format YYYYMMDD   
 income: (numeric)   
-portfolio.json   
-Offers sent during 30-day test period (10 offers x 6 fields)   
-reward: (numeric) money awarded for the amount spent
-channels: (list) web, email, mobile, social
-difficulty: (numeric) money required to be spent to receive reward
-duration: (numeric) time for offer to be open, in days
-offer_type: (string) bogo, discount, informational
-id: (string/hash)
 ```
-2. transcript.json
-Event log (306648 events x 4 fields)
+3. transcript.json  :  Event log (306648 events x 7 fields)
 ```
 person: (string/hash)
 event: (string) offer received, offer viewed, transaction, offer completed
@@ -45,3 +52,117 @@ amount: (numeric) money spent in "transaction"
 reward: (numeric) money gained from "offer completed"
 time: (numeric) hours after start of test
 ```
+
+
+
+## 3. Project Goal
+
+The goal of this project is to create a machine learning model to predict whether a customer would complete the offer *WHEN THEY VIEW THEIR OFFER FIRST*.(Even though it is suggested that　coupones can be completed without being viewed in this scenario, I think it is not practical)
+
+```
+When a person view a coupon, would the person accomplish it?
+```
+
+
+I made the predictive model to answer this question.
+
+
+## 4. Project Overview
+
+In this project, I took the steps below.
+```
+1. Exploratory analysis of the dataset
+2. dataframe whose each row represents each coupon sent in this survey period.
+3. dataframe whose each row represents the last coupons which were sent to each customers.  
+(this dataframe contains customers whom at least 2 coupons have been sent)
+4. create a predictive model from dataframe of step(3)
+5. interprete the model of step(4)
+```
+
+## 5. Detail of Predictive Model
+
+#### Model variables
+
+ When customer A receive a coupon B, my predictive model uses 3 types of variables as X.
+ ```
+ 1. attributes of a customer A (age, income, gender...)
+ 2. type of coupon B (BOGO or Discount, how much more did he had to spent when he saw the coupon)
+ 3. past behaviors of customer A when he got coupons (when )
+```
+
+ And this model predicts y as 1 (will complete) or 0 (will not complete).
+
+
+#### 6. Model dataset size
+Since I decided to predict the customer's last reaction to the coupon,
+ ```
+ 2844 customers received 2 coupons before the latest one
+ 873  customers received 3 coupons before the latest one
+ 111  customers received 4 coupons before the latest one
+ ```
+ Totally 3828 customer's action to the latest coupon is my concern.
+
+ I took 10% testing data and create a model from 90% dataset by using Grid Search.
+
+ #### Model parameter
+
+
+
+## 7. Conclusion (interpretation含む)
+
+
+
+## 8. Repo Structure
+```
+.
+├── 190315StarbucksPromotionAnalysis.ipynb
+├── 190403StarbucksPromotionAnalysis.ipynb
+├── README.md
+└── data
+    ├── firstly_viewed_offers.csv
+    ├── hour_vs_viewed.csv
+    ├── hour_vs_viewed_modified
+    ├── interaction.csv
+    ├── merged_df.csv
+    ├── merged_df3.csv
+    ├── merged_df4.csv
+    ├── portfolio.json
+    ├── portfolio.xlsx
+    ├── portfolio_clean.csv
+    ├── portfolio_clean.xlsx
+    ├── profile.json
+    ├── profile.xlsx
+    ├── profile_clean.csv
+    ├── profile_clean.xlsx
+    ├── transcript.json
+    ├── transcript.xlsx
+    ├── transcript_clean.csv
+    └── transcript_clean.xlsx
+```
+
+
+
+
+## 9. The points where I put a lot of efforts (工夫した点・学んだ点)
+
+１
+各個人の過去のクーポンに対する行動を、その人間の新たな「属性」として落とし込む点。
+過去に送られたクーポンの総数、各クーポンの種類の数、クーポンを見た時のクーポンの残り有効時間は各顧客によってばらばらである。
+それを各顧客に有限個の変数に落とし込むことに苦戦した。
+
+最終的には、各顧客がクーポンを受け取った時の状況を  
+「有効期間までの残り時間が5日8時間以内 or 5日8時間より多い」
+「達成までの残り必要使用額が$10未満 or $10以上」
+の４パターンに分け、過去のそれぞれの状況での達成率(0~1)を４つの変数に落とし込んだ。
+
+もっとデータの数が多ければこれに加えて
+達成時の割引額の大きさに応じて状況をさらに２分割し合計８パターンに分割することが理想である。
+(discountに関しては割引額は最低額の際の割引額に設定することにする)
+
+今回のデータでは過去のクーポンが２〜４回と少ないためこの方法ではnull値が多くなってしまう。
+補完の方法としては....
+
+
+なお顧客のクーポンを見た瞬間の状況を出来るだけシンプルに４つのセグメントに分けて考えるという点に関しては
+以下のポストを参考にした。まずはシンプルにぶつ切りにしてみて問題があれば、あるいはより正確にする必要があればセグメント切りを改善していくというコンセプトのポストである。
+https://note.mu/hik0107/n/n854ff66b2621
