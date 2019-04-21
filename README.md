@@ -70,13 +70,20 @@ I made the predictive model to answer this question.
 ## 4. Project Overview
 
 In this project, I took the steps below.
+
+(In 190315StarbucksPromotionAnalysis)
 ```
 1. Exploratory analysis of the dataset
-2. dataframe whose each row represents each coupon sent in this survey period.
-3. dataframe whose each row represents the last coupons which were sent to each customers.  
-(this dataframe contains customers whom at least 2 coupons have been sent)
+2. Make a dataframe whose each row represents each coupon sent in this survey period.
+```
+
+(In 190403StarbucksPromotionAnalysis)
+```
+3. Make a dataframe whose each row represents the last coupons which were sent to each customers.  
+(this dataframe contains only customers to whom at least 2 coupons have been sent)
 4. create a predictive model from dataframe of step(3)
 5. interprete the model of step(4)
+6.
 ```
 
 ## 5. Detail of Predictive Model
@@ -145,7 +152,23 @@ Since I decided to predict the customer's last reaction to the coupon,
 
 ## 9. The points where I put a lot of efforts (工夫した点・学んだ点)
 
-１
+本プロジェクトではスターバックスのオンラインクーポンに対する顧客の反応について分析した。
+
+クーポンは３種類あり
+BOGO(ある会計において規定額に達したら一定額の割引がなされる)
+Discount(クーポンが送られてからの累計使用金額が規定額に達したら一定額の割引がなされる)
+Information(ある一定期間閲覧可能なインフォページが送られる)
+
+注意点として
+クーポンの有効期間はクーポンが送られた瞬間からであり、見られた瞬間からではない
+そのためクーポンを閲覧できる時間はクーポンにより異なる
+クーポンは見られたかに関わらず規定額に達したら割引がなされる
+
+本プロジェクトではあるクーポンを見た時（まず見る前提で考える）に、その「顧客の属性」、「送られたクーポンの属性」、「その顧客の過去の購買行動」をもとにそのクーポンを達成されるかを予測する予測モデルを作った。
+
+
+
+
 各個人の過去のクーポンに対する行動を、その人間の新たな「属性」として落とし込む点。
 過去に送られたクーポンの総数、各クーポンの種類の数、クーポンを見た時のクーポンの残り有効時間は各顧客によってばらばらである。
 それを各顧客に有限個の変数に落とし込むことに苦戦した。
@@ -157,10 +180,26 @@ Since I decided to predict the customer's last reaction to the coupon,
 
 もっとデータの数が多ければこれに加えて
 達成時の割引額の大きさに応じて状況をさらに２分割し合計８パターンに分割することが理想である。
-(discountに関しては割引額は最低額の際の割引額に設定することにする)
 
 今回のデータでは過去のクーポンが２〜４回と少ないためこの方法ではnull値が多くなってしまう。
 補完の方法としては....
+
+
+
+
+なおこのモデルを活かせば、よりデータを収集することによって
+「顧客に見せるクーポンが顧客がクーポンを見た時に決定できる」という前提を置くと、どのクーポンを置いた時に達成率が最大になるかを自動的に計算することによって最も達成率が高いクーポンを表示させるという方法を達成できる。
+
+なおこの方法では顧客をスターバックスに来店させるということが目的になっており最終的なクーポンによる損得は加味されていない。
+
+これに関しては
+「顧客が日常的に使用する使用額」
+「クーポンによっていくら使うことになるかの期待値を求めるモデル」
+を作ることで計算できる。
+
+例えば顧客が平均月$30
+
+
 
 
 なお顧客のクーポンを見た瞬間の状況を出来るだけシンプルに４つのセグメントに分けて考えるという点に関しては
