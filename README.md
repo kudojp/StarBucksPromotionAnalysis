@@ -134,54 +134,61 @@ In this project, I took these steps below.
        'long_lot_comp_rate',
         't_left_when_viewed','amt_needed_when_viewed'
 
-* Null values in features ['short_little_comp_rate', 'short_lot_comp_rate', 'long_little_comp_rate', 'long_lot_comp_rate'] are inputed by mean of the columns.
+Features ['short_little_comp_rate', 'short_lot_comp_rate', 'long_little_comp_rate', 'long_lot_comp_rate'] have null values. I tried 2 ways of imputation.
+
+1. Replace null with the mean completion rates of that column (that is, the mean rate in each of situation)
+
+2. Replace null with the mean completion rates of that person's "past_completion rate" column
+
+With the data given in this project, the models created by these 2 ways recorded almost the same f1 score in testing after their tuning. (The 1st model was saved in "model.pkl")
+
+
 
 
 ## 7. Conclusion (interpretation)
 
-These are top 10 important features for the model created.
+These are top 10 important features of this model.
 
 ```
-1   past_completion_rate   0.18659521953364147
-2   long_lot_comp_rate   0.08191259118268183
-3   became_year   0.06747546281501476
-4   income   0.06312119581440186
-5   t_left_when_viewed   0.04825733767458709
-6   long_little_comp_rate   0.037443030677931574
-7   short_lot_comp_rate   0.0370296331200642
-8   age   0.0339851178911399
-9   t_viewed   0.029519463245205893
-10  short_little_comp_rate   0.029358644621018382
+1   past_completion_rate   0.10823659095118901
+2   long_lot_comp_rate   0.08595954918332138
+3   short_lot_comp_rate   0.08367514878558703
+4   long_little_comp_rate   0.07800267360062899
+5   short_little_comp_rate   0.07629602818899717
+6   income   0.05515854732093211
+7   became_year   0.04978646626207604
+8   t_left_when_viewed   0.04372529933213142
+9   age   0.032500881997055905
+10   reward   0.028411643826730427
 ```
 
-
-#### 1. Features representing past completion rate of the customer
+### [1]Features representing past completion rate of the customer
 
 ```
 past_completion_rate(1)  
 long_lot_comp_rate(2)  
-long_little_comp_rate(6)  
-short_lot_comp_rate(7)  
-short_little_comp_rate(10)  
+short_lot_comp_rate(3)
+long_little_comp_rate(4)   
+short_little_comp_rate(5)  
 ```
 
 are about past completion rates and it makes sense that these are the most important features of all. Feature engineering in this notebook was worth doing!
 
-#### 2. Features representing attributes of the customer
+### [2]Features representing attributes of the customer
 
 ```
-became_year(3)  
-income(4)  
-age(8)  
+became_year(6)  
+income(7)  
+age(9)  
 ```
-are about attributes of the person. It is concluded that the persons' attributes are more relevant to whether he would achieve the coupon rather than the coupon's type.
+are about attributes of the customer. It is concluded that the persons' attributes are more relevant to whether he would achieve the coupon rather than the coupon's type.
 
-#### 3. Features representing the remaining hours of the coupon
+### [3]Features representing the coupon
 ```
-t_left_when_viewed(5)  
-t_viewed(9)  
+t_left_when_viewed(8)  
+reward(10)  
 ```
-are strongly related with how many hours are left when the customer viewed a coupon. It is interesting that the [reward amount / difficulty] of the coupon are less important than the remaining hours of the coupon.
+As was expected, remaining time and and the reward of a coupon have affect on customers' behavior. It is interesting that how much more amount of purchase the customer have to make to achieve the coupon is not important as these 2 factors.
 
 
 ## 8. Repo Structure
