@@ -1,5 +1,5 @@
 # Starbucks Promotion Analysis
-(後半に日本語の説明あり)
+(後半に日本語での説明あり)
 
 This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will create a predictive model to predict whether a customer would complete a coupon **when they first view it**. (It is tricky that even if a customer does not view and displat the coupon in the shop, the coupon can be automatically used once he spends the amount needed.)
 
@@ -58,7 +58,7 @@ time: (numeric) hours after start of test
 
 ## 3. Project Goal
 
-The goal of this project is to create a machine learning model to predict whether a customer would complete the offer *WHEN THEY VIEW THEIR OFFER FIRST*. (Even though it is suggested that　coupons can be completed without being viewed in this scenario.)
+The goal of this project is to create a machine learning model to predict whether a customer would complete the offer *WHEN THEY VIEW THEIR OFFERS FIRST*. (Even though it is suggested that　coupons can be completed without being viewed in this scenario.)
 
 In simple words, I made a model to answer this question.
 
@@ -113,7 +113,7 @@ In this project, I took these steps below.
 
  I took 10% testing data and create a model from 90% dataset. I used Random Forest Classifier and tuned hyperparameters by using Grid Search.
 
- The final model tuned predicted testing data with f1 score ******. This model is pickled in a file "data/model.pkl".
+ The final model tuned predicted testing data with micro f1 score 0.80. This model is pickled in a file "data/model.pkl".
 
 #### Model variables
 
@@ -134,14 +134,54 @@ In this project, I took these steps below.
        'long_lot_comp_rate',
         't_left_when_viewed','amt_needed_when_viewed'
 
-* variables ['short_little_comp_rate', 'short_lot_comp_rate', 'long_little_comp_rate', 'long_lot_comp_rate'] is inputed by *********
-
+* Null values in features ['short_little_comp_rate', 'short_lot_comp_rate', 'long_little_comp_rate', 'long_lot_comp_rate'] are inputed by mean of the columns.
 
 
 ## 7. Conclusion (interpretation)
 
+These are top 10 important features for the model created.
+
+```
+1   past_completion_rate   0.18659521953364147
+2   long_lot_comp_rate   0.08191259118268183
+3   became_year   0.06747546281501476
+4   income   0.06312119581440186
+5   t_left_when_viewed   0.04825733767458709
+6   long_little_comp_rate   0.037443030677931574
+7   short_lot_comp_rate   0.0370296331200642
+8   age   0.0339851178911399
+9   t_viewed   0.029519463245205893
+10  short_little_comp_rate   0.029358644621018382
+```
 
 
+#### 1. Features representing past completion rate of the customer
+
+```
+past_completion_rate(1)  
+long_lot_comp_rate(2)  
+long_little_comp_rate(6)  
+short_lot_comp_rate(7)  
+short_little_comp_rate(10)  
+```
+
+are about past completion rates and it makes sense that these are the most important features of all. Feature engineering in this notebook was worth doing!
+
+#### 2. Features representing attributes of the customer
+
+```
+became_year(3)  
+income(4)  
+age(8)  
+```
+are about attributes of the person. It is concluded that the persons' attributes are more relevant to whether he would achieve the coupon rather than the coupon's type.
+
+#### 3. Features representing the remaining hours of the coupon
+```
+t_left_when_viewed(5)  
+t_viewed(9)  
+```
+are strongly related with how many hours are left when the customer viewed a coupon. It is interesting that the [reward amount / difficulty] of the coupon are less important than the remaining hours of the coupon.
 
 
 ## 8. Repo Structure
@@ -203,15 +243,8 @@ https://note.mu/hik0107/n/n854ff66b2621
 
 この時、表示するクーポンの有効残期間、どれだけの達成基準額、どれだけのクーポン額によって顧客がクーポンを達成できるかどうかが推測できる。これをもとに達成が予想されるクーポンを表示させることができる。（なお今回はモデルの解釈可能性を優先して、ランダムフォレスト分類器を用いたが、ロジスティック回帰などによって達成確率を０〜１まで数字として出すことによって、クーポンを各個人に応じてより細かく最適化することが可能になる）
 
-なおこの方法では問題点が２点ある。
+なおこの方法では問題が２点ある。
 1. 有効残額
-現在の仕様ではクーポンの消滅期間はクーポンの中身に依存しているため
-2.
-顧客をスターバックスに来店させるということが目的になっており最終的なクーポンによる損得は加味されていない。
-
-
-
-
-なお顧客のクーポンを見た瞬間の状況を出来るだけシンプルに４つのセグメントに分けて考えるという点に関しては
-以下のポストを参考にした。まずはシンプルにぶつ切りにしてみて問題があれば、あるいはより正確にする必要があればセグメント切りを改善していくというコンセプトのポストである。
-https://note.mu/hik0107/n/n854ff66b2621
+現在の仕様ではクーポンの消滅期間はクーポンの中身に依存しているため、以上の手法を取り入れるにはクーポンの消滅期間は開封されなかった場合５日、などの前提を置く必要がある。
+2. 利益になるか
+今回のモデルではクーポンの開封を予想するだけであり、例えばクーポンの特典額を$1000にした場合当然であるが達成率は跳ね上がるだろう。しかしながらこれは会社にとって利益になるわけではない。どのクーポンを送ると利益を生み出すことになるのかは、顧客がクーポンを受け取っていない時の日常的な使用額と、クーポンを送った際の期待値の大小比較によって得られる。
