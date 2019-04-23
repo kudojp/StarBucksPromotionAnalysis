@@ -66,7 +66,7 @@ In simple words, I made a model to answer this question.
 When a person view a coupon, would the person accomplish it?
 ```
 
-**[NOTE]** This model'S purpose is only to predict whether a customer would complete the coupon or not. Whether issuing coupon to the customer would be beneficial to the company or not is not discussed here. For example, If a coupon which makes $1000 rewards is issued, almost all customers would accomplish it. It has to be decided what kind of coupon would attract a customer and also still beneficial to the company based on the behavior of customers without any coupon (which is not given in this dataset).
+**[NOTE]** This model can only predict whether a customer would complete the coupon or not. Whether issuing coupon to the customer would be beneficial to the company is not discussed here. For example, If a coupon which makes $1000 rewards is issued, almost all customers would accomplish it. It has to be decided what kind of coupon would attract a customer and also still beneficial to the company based on the behavior taken by the customer without any coupon (which is not given in this dataset).
 
 ## 4. Project Overview
 
@@ -231,7 +231,7 @@ are strongly related with how many hours are left when the customer viewed a cou
 2. 過去にその顧客がクーポンを開封した際のその後の達成率
 3. 各顧客がクーポンを受け取った時の状況を「有効期間までの残り時間が5日8時間以内 or 5日8時間より多い」✖️「達成までの残り必要使用額が$10未満 or $10以上」の４パターンに分け、それぞれの状況での過去の達成率(0~1)
 
-という３つの観点から変数に落とし込んだ。なお、今回はデータ数の制限から3.で4つの状況に分類したが、これに加え、「達成時の割引額の大きさ」に応じて状況をさらに２分割し合計８パターンの状況に分割することでより精度が改善されるが期待される。
+という３つの観点から変数に落とし込んだ。なお、今回はデータ数の制限から3.で4つの状況に分類したが、これに加え、「達成時の割引額の大きさ」に応じて状況をさらに２分割し合計８パターンの状況に分割することでより精度が改善されることが期待される。
 ```
 過去に顧客のクーポンを見た瞬間の状況を４つのセグメントに分けて考えるというアイデアは以下のポストを参考にした。
 
@@ -241,10 +241,10 @@ https://note.mu/hik0107/n/n854ff66b2621
 ## どう役に立つのか
 「顧客に見せるクーポンを顧客がクーポンを開封した瞬間に決定できる」という前提を置くとする。  
 
-この時、表示するクーポンの有効残期間、どれだけの達成基準額、どれだけのクーポン額によって顧客がクーポンを達成できるかどうかが推測できる。これをもとに達成が予想されるクーポンを表示させることができる。（なお今回はモデルの解釈可能性を優先して、ランダムフォレスト分類器を用いたが、ロジスティック回帰などによって達成確率を０〜１まで数字として出すことによって、クーポンを各個人に応じてより細かく最適化することが可能になる）
+この時、表示するクーポンの有効残期間、どれだけの達成基準額、どれだけのクーポン額によって顧客がクーポンを達成できるかどうかが推測できる。これをもとに達成が予想されるクーポンを表示させることができる。（なお今回はモデルの解釈可能性を優先して、ランダムフォレスト分類器を用いたが、ロジスティック回帰などによって達成確率を０〜１までの確率として出すことによって、クーポンを各個人に応じてより細かく最適化することが可能になる）
 
 なおこの方法では問題が２点ある。
-1. 有効残額
-現在の仕様ではクーポンの消滅期間はクーポンの中身に依存しているため、以上の手法を取り入れるにはクーポンの消滅期間は開封されなかった場合５日、などの前提を置く必要がある。
+1. 有効残期間
+現在の仕様ではクーポンの消滅期間はクーポンの中身に依存している。以上の手法を取り入れるにはクーポンの消滅期間は開封されなかった場合５日、などの新たな前提を置く必要がある。
 2. 利益になるか
-今回のモデルではクーポンの開封を予想するだけであり、例えばクーポンの特典額を$1000にした場合当然であるが達成率は跳ね上がるだろう。しかしながらこれは会社にとって利益になるわけではない。どのクーポンを送ると利益を生み出すことになるのかは、顧客がクーポンを受け取っていない時の日常的な使用額と、クーポンを送った際の期待値の大小比較によって得られる。
+今回のモデルではクーポンの開封を予想するだけであり、例えばクーポンの特典額を$1000にした場合当然であるが達成率は跳ね上がるだろう。しかしながらこれは会社にとって利益になるわけではない。どのクーポンを送ると利益を生み出すことになるのかは、顧客がクーポンを受け取っていない時の日常的な使用額と、クーポンを送った際の使用額期待値の大小比較によって決定できる。
