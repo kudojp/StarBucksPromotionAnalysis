@@ -52,8 +52,29 @@ This is my final project in Udacity Data Scinentist Nanodegree. In this project,
 
 Data set used in this project is a simplified version of the real Starbucks app.
 
+## Relevant URLs
+- [2 Jupyter notebooks](https://kudojp.github.io/StarbucksPromotionAnalysis/) where this project was done
 
-## 1. Data Overview
+## Repo Structure
+```
+.
+├── 190315StarbucksPromotionAnalysis.ipynb
+├── 190403StarbucksPromotionAnalysis.ipynb
+├── README.md
+└── data
+    ├── firstly_viewed_offers.csv
+    ├── interaction.csv
+    ├── merged_df2.csv
+    ├── portfolio.json
+    ├── portfolio_clean.csv
+    ├── profile.json
+    ├── profile_clean.csv
+    ├── transcript.json
+    ├── transcript_clean.csv
+    └── model.pkl
+```    
+
+## Data Overview
 
 This data records 17k customers' behaviors, including receiving offers, opening offers, and making purchases.
 As a simplification, there are no explicit products to track. Only the amounts of each transaction or offer are recorded.  
@@ -70,7 +91,7 @@ There are 3 types of offers that can be sent. Offers can be delivered via multip
 ```
 
 
-## 2. Dataset Detail
+## Dataset Details
 
 1. portfolio.json : Coupons detail (10 types of coupons x 6 fields)
 ```
@@ -103,7 +124,7 @@ time: (numeric) hours after start of test
 
 
 
-## 3. Project Goal
+## Project Goal
 
 The goal of this project is to create a machine learning model to predict whether a customer would complete the offer *WHEN THEY VIEW THEIR OFFERS FIRST*. (Even though it is suggested that　coupons can be completed without being viewed in this scenario.)
 
@@ -115,7 +136,7 @@ When a person view a coupon, would the person accomplish it?
 
 **[NOTE]** This model can only predict whether a customer would complete the coupon or not. Whether issuing coupon to the customer would be beneficial to the company is not discussed here. For example, If a coupon which makes $1000 rewards is issued, almost all customers would accomplish it. It has to be decided what kind of coupon would attract a customer and also still beneficial to the company based on the behavior taken by the customer without any coupon (which is not given in this dataset).
 
-## 4. Project Overview
+## Project Approach Overview
 
 In this project, I took these steps below.
 
@@ -133,7 +154,7 @@ In this project, I took these steps below.
 5. interpret the model
 ```
 
-## 5. Detail of Predictive Model
+## Detail of Predictive Model
 
 #### Model variables
 
@@ -192,7 +213,7 @@ With the data given in this project, the models created by these 2 ways recorded
 
 
 
-## 7. Conclusion (interpretation)
+## Conclusion (interpretation)
 
 These are top 10 important features of this model.
 
@@ -238,21 +259,3 @@ reward(10)
 As was expected, remaining time and and the reward of a coupon have affect on customers' behavior. It is interesting that how much more amount of purchase the customer have to make to achieve the coupon is not important as these 2 factors.
 
 
-
-## 8. Repo Structure
-```
-.
-├── 190315StarbucksPromotionAnalysis.ipynb
-├── 190403StarbucksPromotionAnalysis.ipynb
-├── README.md
-└── data
-    ├── firstly_viewed_offers.csv
-    ├── interaction.csv
-    ├── merged_df2.csv
-    ├── portfolio.json
-    ├── portfolio_clean.csv
-    ├── profile.json
-    ├── profile_clean.csv
-    ├── transcript.json
-    ├── transcript_clean.csv
-    └── model.pkl
