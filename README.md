@@ -16,6 +16,9 @@
 2. そのためクーポンを閲覧できる時間はクーポンにより異なる
 3. クーポンは見られたかに関わらず規定額に達したら割引がなされる
 
+## 関連URL
+- [解析を行ったJupyter notebook2本](https://kudojp.github.io/StarbucksPromotionAnalysis/)
+
 ## 工夫した点  
 各個人の過去のクーポンに対する行動を、その人間の新たな「属性」として落とし込む点。
 過去に送られたクーポンの総数、各クーポンの種類の数、クーポンを見た時のクーポンの残り有効時間は各顧客によってばらばらである。これらを各顧客に有限個の変数に落とし込むことに苦戦した。
@@ -53,6 +56,7 @@ This is my final project in Udacity Data Scinentist Nanodegree. In this project,
 Data set used in this project is a simplified version of the real Starbucks app.
 
 ## Relevant URLs
+
 - [2 Jupyter notebooks](https://kudojp.github.io/StarbucksPromotionAnalysis/) where this project was done
 
 ## Repo Structure
