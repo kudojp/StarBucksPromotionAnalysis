@@ -1,6 +1,8 @@
 # Starbucks Promotion Analysis
 
-<details><summary>日本語の説明はクリックして展開</summary><div>
+
+## 日本語での要約
+<details><summary>ここをクリックして展開</summary><div>
  
 ## 概要
 本プロジェクトではスターバックスのオンラインクーポンに対する顧客の反応について分析した。あるクーポンを見た時（まず見る前提で考える）に、その「顧客の属性」、「送られたクーポンの属性」、「その顧客の過去の購買行動」をもとにそのクーポンを達成されるかを予測する予測モデルを作った。
@@ -45,6 +47,8 @@ https://note.mu/hik0107/n/n854ff66b2621
 
 </div></details>
 
+
+## Project Overview
 
 This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will create a predictive model to predict whether a customer would complete a coupon **when they first view it**. (It is tricky that even if a customer does not view and displat the coupon in the shop, the coupon can be automatically used once he spends the amount needed.)
 
@@ -236,6 +240,7 @@ reward(10)
 As was expected, remaining time and and the reward of a coupon have affect on customers' behavior. It is interesting that how much more amount of purchase the customer have to make to achieve the coupon is not important as these 2 factors.
 
 
+
 ## 8. Repo Structure
 ```
 .
@@ -253,5 +258,3 @@ As was expected, remaining time and and the reward of a coupon have affect on cu
     ├── transcript.json
     ├── transcript_clean.csv
     └── model.pkl
-
-```
