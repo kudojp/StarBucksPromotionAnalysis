@@ -51,7 +51,7 @@ https://note.mu/hik0107/n/n854ff66b2621
 
 ## Project Overview
 
-This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will create a predictive model to predict whether a customer would complete a coupon **when they first view it**. (It is tricky that even if a customer does not view and displat the coupon in the shop, the coupon can be automatically used once he spends the amount needed.)
+This is my final project in Udacity Data Scinentist Nanodegree. In this project, I will create a predictive model to predict whether a customer would complete a coupon **when they first view it**. (It is tricky that even if a customer does not view or display the coupon in the shop, the coupon can be automatically used once he spends the amount needed.)
 
 Data set used in this project is a simplified version of the real Starbucks app.
 
