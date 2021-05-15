@@ -17,7 +17,7 @@
 3. クーポンは見られたかに関わらず規定額に達したら割引がなされる
 
 ## 関連URL
-- [解析を行ったJupyter notebook2本](https://kudojp.github.io/StarbucksPromotionAnalysis-2019/)
+- [解析を行ったJupyter notebook2本](https://kudojp.github.io/StarbucksPromotionAnalysis-Python2019/)
 
 ## 工夫した点  
 各個人の過去のクーポンに対する行動を、その人間の新たな「属性」として落とし込む点。
