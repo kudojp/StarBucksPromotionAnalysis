@@ -57,7 +57,7 @@ Data set used in this project is a simplified version of the real Starbucks app.
 
 ## Relevant URLs
 
-- [two Jupyter notebooks](https://kudojp.github.io/StarbucksPromotionAnalysis-2019/) where this project was done
+- [two Jupyter notebooks](https://kudojp.github.io/StarbucksPromotionAnalysis-Python2019/) where this project was done
 
 ## Repo Structure
 ```
